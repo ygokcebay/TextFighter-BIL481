@@ -156,7 +156,7 @@ public class Settings {
             //Weapons
             //Gun:   (name, ammoUsed, ammoIncludedWithPurchase, buyable, price, ammoPrice, level, chanceOfMissing, firstInit, changeDif)
             //Melee: (name, startingWeapon, buyable, price, level, damageMin, damageMax, firstInit)
-            Game.fists = new Weapon("Fists", true, false, 0, 0, 5, 10, firstInit, changeDif);
+            Game.fists = new Weapon("Gauntlets", true, false, 0, 0, 5, 10, firstInit, changeDif);
             Game.baseballBat = new Weapon("Baseball Bat", false, true, 120, 1, 10, 15, firstInit, changeDif);
             Game.knife = new Weapon("Knife", false, true, 125, 2, 10, 20, firstInit, changeDif);
             Game.pipe = new Weapon("Pipe", false, false, 0, 0, 5, 20, firstInit, changeDif);
@@ -200,7 +200,7 @@ public class Settings {
             //Weapons
             //Gun:   (name, ammoUsed, ammoIncludedWithPurchase, buyable, price, ammoPrice, level, chanceOfMissing, firstInit, changeDif)
             //Melee: (name, startingWeapon, buyable, price, level, damageMin, damageMax, firstInit, changeDif)
-            Game.fists = new Weapon("Fists", true, false, 0, 0, 5, 10, firstInit, changeDif);
+            Game.fists = new Weapon("Gauntlets", true, false, 0, 0, 5, 10, firstInit, changeDif);
             Game.baseballBat = new Weapon("Baseball Bat", false, true, 170, 1, 10, 15, firstInit, changeDif);
             Game.knife = new Weapon("Knife", false, true, 175, 2, 10, 20, firstInit, changeDif);
             Game.pipe = new Weapon("Pipe", false, false, 0, 0, 5, 20, firstInit, changeDif);

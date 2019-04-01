@@ -12,8 +12,9 @@ class Start {
             Debug.enable();
         }
 
+        Menu n = new Menu();
         //Runs the game
-        Menu.load();
+        n.load();
 
         //Clears Console
         Ui.cls();

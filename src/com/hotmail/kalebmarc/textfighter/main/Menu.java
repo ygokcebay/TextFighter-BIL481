@@ -2,8 +2,8 @@ package com.hotmail.kalebmarc.textfighter.main;
 
 class Menu {
 	
-	private Menu(){}
-	public static void load(){
+	public Menu(){}
+	public void load(){
 		while(true){
 			
 			Ui.cls();
@@ -26,7 +26,8 @@ class Menu {
                 case 1:
                     Ui.cls();
                     Ui.guiEnabled = false;
-                    Game.start();
+                    Game game = new Game();
+                    game.start();
 
                     //Saves the game before exiting
                     Saves.save();

@@ -13,7 +13,7 @@ import static com.hotmail.kalebmarc.textfighter.player.Settings.menu;
 import static com.hotmail.kalebmarc.textfighter.player.Settings.setDif;
 
 public class Game {
-	private Game() {
+	public Game() {
 	}
 
 	//Enemies
@@ -55,7 +55,7 @@ public class Game {
 
 	private static Scanner scan = new Scanner(System.in);
 
-	public static void start() {
+	public void start() {
 		
 		/*
 		 * Asks if the user wants to load from the save file
@@ -207,7 +207,7 @@ public class Game {
 		}//While loop
 	}//Method
 
-	private static void town() {
+	private void town() {
 
 		int menuChoice;
 
@@ -249,7 +249,8 @@ public class Game {
 					Bank.menu();
 					break;
 				case 4:
-					Shop.menu();
+					Shop shop = new Shop();
+					shop.menu();
 					break;
 				case 5:
 					upgrade();

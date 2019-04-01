@@ -24,7 +24,7 @@ public class Weapon {
     private int damageMin;
     private int damageMax;
     private double chanceOfMissing;
-    private String name;
+    public String name;
     private boolean buyable;
     //Ammo
     private int ammo;
@@ -34,7 +34,7 @@ public class Weapon {
 
     //Enhancement
 
-    private int enhancement;
+    public int enhancement;
 
 
 
@@ -49,7 +49,6 @@ public class Weapon {
         this.ammoPrice = ammoPrice;
         this.level = level;
         this.chanceOfMissing = chanceOfMissing;
-        this.enhancement = 0;
         this.melee = false;
 
         if (!changeDif) {
@@ -88,6 +87,8 @@ public class Weapon {
             }
         }
     }
+
+    public Weapon() {}
 
     public static Weapon get() {
         return current;
@@ -302,6 +303,7 @@ public class Weapon {
         Stats.coinsSpentOnWeapons += price;
         this.owns = true;
         current = this;
+        enhancement = 0;
         Ui.println("You have bought a " + this.getName() + " for " + this.price + " coins.");
         Ui.println("Coins: " + Coins.get());
         Ui.pause();
@@ -348,16 +350,18 @@ public class Weapon {
         return this.ammoPrice;
     }
 
-    public void enhance(Weapon w){
-        w.enhancement++;
 
-        if(w.enhancement <= 5) {
-            w.damageMin = (w.damageMin * 3) / 2;
-            w.damageMax = (w.damageMax * 3) / 2;
-            System.out.println("Successfully enhanced to +"+ w.enhancement + " !");
+    public void enhance(){
+        this.enhancement++;
+
+        if(this.enhancement <= 5) {
+            this.damageMin = (this.damageMin * 3) / 2;
+            this.damageMax = (this.damageMax * 3) / 2;
+            System.out.println("Successfully enhanced to +"+ this.enhancement + " !");
         }
         else{
             System.out.println("Enhancement is already maxed out!");
+            this.enhancement = 5;
         }
     }
 }

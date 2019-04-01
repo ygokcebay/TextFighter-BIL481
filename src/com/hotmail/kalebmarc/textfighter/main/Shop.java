@@ -12,10 +12,10 @@ import com.hotmail.kalebmarc.textfighter.player.Xp;
 import java.util.ArrayList;
 
 class Shop {
-    private Shop() {
+    public Shop() {
     }
 
-    public static void menu() {
+    public void menu() {
         while (true) {
             Ui.cls();
             Ui.println("-------------------------------------------------------------------");
@@ -31,7 +31,8 @@ class Shop {
             Ui.println("3) Body Armour");
             Ui.println("4) Property");
             Ui.println("5) XP");
-            Ui.println("6) Back");
+            Ui.println("6) Enhance");
+            Ui.println("7) Back");
             Ui.println("-------------------------------------------------------------------");
             switch (Ui.getValidInt()) {
                 case 1:
@@ -50,6 +51,9 @@ class Shop {
                     xp();
                     break;
                 case 6:
+                    Shop s = new Shop();
+                    s.enhanceS();
+                case 7:
                     return;
                 default:
                     break;
@@ -287,6 +291,7 @@ class Shop {
             }
         }
     }
+
     private static void property(){
         while (true){
 
@@ -305,6 +310,7 @@ class Shop {
             return;
         }
     }
+
     private static void armour() {
         while (true) {
             Ui.cls();
@@ -353,6 +359,37 @@ class Shop {
                     Ui.println();
                     Ui.println(menuItem + " is not an option.");
                 }
+            }
+        }
+    }
+
+    private void enhanceS(){
+        int price = 100 + (Weapon.get().enhancement * 10);
+
+        Ui.println("Do you want to enhance your weapon?");
+        Ui.println();
+        Ui.println("Price  : " + price);
+        Ui.println();
+        Ui.println("Write 1 if yes, 0 otherwise.");
+
+        while(true){
+            if(Ui.getValidInt() == 1 && Coins.get() >= price){
+                Coins.set(-1 * price,true);
+                Weapon.get().enhance();
+                break;
+            }
+            else if(Coins.get() < price){
+                Ui.println("You don't have enough money!");
+                break;
+            }
+            else{
+                Ui.println("Wrong command!");
+                Ui.println();
+                Ui.println("Do you want to enhance your weapon?");
+                Ui.println();
+                Ui.println("Price  : " + price);
+                Ui.println();
+                Ui.println("Write 1 if yes, 0 otherwise.");
             }
         }
     }
