@@ -12,8 +12,15 @@ public class Potion {
     public static int rpUsed = 0;
     public static int rpLevel;
     public static int rpPrice;
+    public static int stpPrice;
+    public static int agipPrice;
+    public static int cpPrice;
     private static int survivalPotion; //potion that heals 25% of health
     private static int recoveryPotion; //potion that heals 75% of health
+    private static int statsPotion;//potion that add +1 to all stats
+    private static int STRpotion;//+1 to STR
+    private static int AGIpotion;//+1 to AGI
+    private static int CHRpotion;//+1 to INT
 
     private Potion() {
     }
@@ -24,6 +31,14 @@ public class Potion {
                 return survivalPotion;
             case "recovery":
                 return recoveryPotion;
+            case "stats":
+                return statsPotion;
+            case "strength":
+                return STRpotion;
+            case "intelligence":
+                return CHRpotion;
+            case "agility":
+                return AGIpotion;
             default:
                 return 0; //need to modify
         }
@@ -45,6 +60,38 @@ public class Potion {
                 } else {
                     recoveryPotion += amount;
                     if (recoveryPotion < 0) recoveryPotion = 0;
+                }
+                break;
+            case "allstats":
+                if (!add) {
+                    statsPotion = amount;
+                } else {
+                    statsPotion += amount;
+                    if (statsPotion < 0) statsPotion = 0;
+                }
+                break;
+            case "strength":
+                if (!add) {
+                    STRpotion = amount;
+                } else {
+                    STRpotion += amount;
+                    if (STRpotion < 0) STRpotion = 0;
+                }
+                break;
+            case "agilty":
+                if (!add) {
+                    AGIpotion = amount;
+                } else {
+                    AGIpotion += amount;
+                    if (AGIpotion < 0) AGIpotion = 0;
+                }
+                break;
+            case "intelligence":
+                if (!add) {
+                    CHRpotion = amount;
+                } else {
+                    CHRpotion += amount;
+                    if (CHRpotion < 0) CHRpotion = 0;
                 }
                 break;
             default:

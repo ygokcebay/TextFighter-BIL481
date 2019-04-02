@@ -4,6 +4,7 @@ import com.hotmail.kalebmarc.textfighter.item.FirstAid;
 import com.hotmail.kalebmarc.textfighter.item.InstaHealth;
 import com.hotmail.kalebmarc.textfighter.item.Power;
 import com.hotmail.kalebmarc.textfighter.player.*;
+import org.yaml.snakeyaml.nodes.ScalarNode;
 
 import java.util.Scanner;
 
@@ -107,7 +108,15 @@ public class Cheats {
                     Food.arrayFood.get(i).setQuantity(10);
                 Stats.timesCheated++;
                 break;
-
+            case "iamstronk":
+                Xp.setSTR(Xp.getSTR()+10);
+                Stats.timesCheated++;
+            case "iamagile":
+                Xp.setAGI(Xp.getAGI()+10);
+                Stats.timesCheated++;
+            case "iamhandsome":
+                Xp.setCHR(Xp.getCHR()+10);
+                Stats.timesCheated++;
         }
     }
 

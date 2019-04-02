@@ -13,6 +13,9 @@ public class Xp {
     private static int battleXp;
     private static int xpNeeded;
     private static int level;
+    private static int Strength;//Deal extra DMG
+    private static int Agilty;//Evade fpr some percentage
+    private static int Charisma;//Get discount from shop
 	public static int total;
 
     private Xp() {
@@ -32,8 +35,11 @@ public class Xp {
             xp = 49000;
         }else {
 
-			Ui.popup("You've leveled up! You are now level " + (level + 1) + "!\nYou have been rewarded 100 coins!", "Level Up!", JOptionPane.INFORMATION_MESSAGE);
+			Ui.popup("You've leveled up! You are now level " + (level + 1) + "!\nYou have been rewarded 100 coins!\nSTR +1 AGI +1 INT +1", "Level Up!", JOptionPane.INFORMATION_MESSAGE);
 			xp = 0;
+			Agilty++;
+			Strength++;
+			Charisma++;
 			xpNeeded += 500;
 			level++;
             Coins.set(100, true);
@@ -76,7 +82,30 @@ public class Xp {
         level = lvl;
 	}
 
-	public static void setOutOf(int outOf){
+    public static void setAGI(int AGI) {
+        Xp.Agilty = AGI;
+    }
+
+    public static void setSTR(int STR) {
+        Xp.Strength = STR;
+    }
+
+    public static void setCHR(int INT) {
+        Xp.Charisma = INT;
+    }
+    public static int getAGI() {
+        return Agilty;
+    }
+
+    public static int getSTR() {
+        return Strength;
+    }
+
+    public static int getCHR() {
+        return Charisma;
+    }
+
+    public static void setOutOf(int outOf){
 		xpNeeded = outOf;
 	}
 	public static void setAll(int current, int outOf, int lvl){

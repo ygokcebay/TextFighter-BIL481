@@ -88,6 +88,18 @@ class Shop {
             Ui.println("   Price - " + Potion.rpPrice + " coins");
             Ui.println("   Level - " + Potion.rpLevel);
             Ui.println();
+            Ui.println("3) STRENGTH POTION");
+            Ui.println("   Price - " + Potion.rpPrice + " coins");
+            Ui.println("   Level - " + Potion.rpLevel);
+            Ui.println();
+            Ui.println("3) AGILITY POTION");
+            Ui.println("   Price - " + Potion.rpPrice + " coins");
+            Ui.println("   Level - " + Potion.rpLevel);
+            Ui.println();
+            Ui.println("3) CHARM POTION");
+            Ui.println("   Price - " + Potion.rpPrice + " coins");
+            Ui.println("   Level - " + Potion.rpLevel);
+            Ui.println();
             Ui.println("4) INSTA-HEALTH");
             Ui.println("   Price - " + InstaHealth.price + " coins");
             Ui.println("   Level - " + InstaHealth.level);
