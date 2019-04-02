@@ -100,10 +100,18 @@ public class Weapon {
 
     public static void set(Weapon x) {
         current = x;
+        BULLET_DAMAGE = 10;
+        if(current.enhancement != 0 && !current.melee){
+            BULLET_DAMAGE *= Math.pow(1.5,current.enhancement);
+        }
     }
 
     public static void set(int i) {
         current = arrayWeapon.get(i);
+        BULLET_DAMAGE = 10;
+        if(current.enhancement != 0 && !current.melee){
+            BULLET_DAMAGE *= Math.pow(1.5,current.enhancement);
+        }
     }
 
     public static void choose() {
@@ -148,6 +156,12 @@ public class Weapon {
 
                     current = arrayWeapon.get(menuItem);
                     Ui.msg("You have equipped a " + arrayWeapon.get(menuItem).getName());
+
+                    BULLET_DAMAGE = 10;
+                    if(current.enhancement != 0 && !current.melee){
+                        BULLET_DAMAGE *= Math.pow(1.5,current.enhancement);
+                    }
+
                     return;
 
                 } catch (Exception e) {
@@ -352,12 +366,18 @@ public class Weapon {
 
 
     public void enhance(){
+
         this.enhancement++;
 
         if(this.enhancement <= 5) {
-            this.damageMin = (this.damageMin * 3) / 2;
-            this.damageMax = (this.damageMax * 3) / 2;
-            System.out.println("Successfully enhanced to +"+ this.enhancement + " !");
+            if(this.melee){
+                this.damageMin = (this.damageMin * 3) / 2;
+                this.damageMax = (this.damageMax * 3) / 2;
+            }
+            else{
+                BULLET_DAMAGE = (BULLET_DAMAGE * 3) / 2;
+            }
+            Ui.println("Succesfully enhanced to +"+ this.enhancement + " !");
         }
         else{
             System.out.println("Enhancement is already maxed out!");

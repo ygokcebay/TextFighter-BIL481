@@ -386,7 +386,9 @@ class Shop {
 
         while(true){
             if(Ui.getValidInt() == 1 && Coins.get() >= price){
-                Coins.set(-1 * price,true);
+                if(Weapon.get().enhancement != 5){
+                    Coins.set(-1 * price,true);
+                }
                 Weapon.get().enhance();
                 break;
             }
@@ -402,6 +404,7 @@ class Shop {
                 Ui.println("Price  : " + price);
                 Ui.println();
                 Ui.println("Write 1 if yes, 0 otherwise.");
+
             }
         }
     }
