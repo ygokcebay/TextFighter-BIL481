@@ -408,11 +408,11 @@ class Shop {
 
 			switch (menuChoice) {
 			case 1:
-				if(50>Coins.get()){
+				if(75>Coins.get()){
 					Ui.println("You don't have enough coins to craft weapons");
 					return;
 				}
-				Coins.set(-(50), true);
+				Coins.set(-(75), true);
 				ArrayList<Weapon> ownedWeapons = new ArrayList<>();
 
 				for (int i = 0; i < Weapon.arrayWeapon.size(); i++) {
