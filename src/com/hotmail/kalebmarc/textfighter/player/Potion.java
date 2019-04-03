@@ -15,6 +15,9 @@ public class Potion {
     public static int stpPrice;
     public static int agipPrice;
     public static int cpPrice;
+    public static int stpLevel;
+    public static int agipLevel;
+    public static int cpLevel;
     private static int survivalPotion; //potion that heals 25% of health
     private static int recoveryPotion; //potion that heals 75% of health
     private static int statsPotion;//potion that add +1 to all stats
@@ -78,7 +81,7 @@ public class Potion {
                     if (STRpotion < 0) STRpotion = 0;
                 }
                 break;
-            case "agilty":
+            case "agility":
                 if (!add) {
                     AGIpotion = amount;
                 } else {
@@ -86,7 +89,7 @@ public class Potion {
                     if (AGIpotion < 0) AGIpotion = 0;
                 }
                 break;
-            case "intelligence":
+            case "charm":
                 if (!add) {
                     CHRpotion = amount;
                 } else {

@@ -88,23 +88,23 @@ class Shop {
             Ui.println("   Price - " + Potion.rpPrice + " coins");
             Ui.println("   Level - " + Potion.rpLevel);
             Ui.println();
-            Ui.println("3) STRENGTH POTION");
-            Ui.println("   Price - " + Potion.rpPrice + " coins");
-            Ui.println("   Level - " + Potion.rpLevel);
+            Ui.println("4) STRENGTH POTION");
+            Ui.println("   Price - " + Potion.stpPrice + " coins");
+            Ui.println("   Level - " + Potion.stpLevel);
             Ui.println();
-            Ui.println("3) AGILITY POTION");
-            Ui.println("   Price - " + Potion.rpPrice + " coins");
-            Ui.println("   Level - " + Potion.rpLevel);
+            Ui.println("5) AGILITY POTION");
+            Ui.println("   Price - " + Potion.agipPrice + " coins");
+            Ui.println("   Level - " + Potion.agipLevel);
             Ui.println();
-            Ui.println("3) CHARM POTION");
-            Ui.println("   Price - " + Potion.rpPrice + " coins");
-            Ui.println("   Level - " + Potion.rpLevel);
+            Ui.println("6) CHARM POTION");
+            Ui.println("   Price - " + Potion.cpPrice + " coins");
+            Ui.println("   Level - " + Potion.cpLevel);
             Ui.println();
-            Ui.println("4) INSTA-HEALTH");
+            Ui.println("7) INSTA-HEALTH");
             Ui.println("   Price - " + InstaHealth.price + " coins");
             Ui.println("   Level - " + InstaHealth.level);
             Ui.println();
-            Ui.println("5) Back");
+            Ui.println("8) Back");
             Ui.println("-------------------------------------------------------------------");
             switch (Ui.getValidInt()) {
                 case 1:
@@ -128,6 +128,26 @@ class Shop {
                     NPC.gratitude("Health", "purchase");
                     break;
                 case 5:
+                    Ui.cls();
+                    Potion.buy("agility");
+                    NPC.gratitude("Health", "purchase");
+                    break;
+                case 6:
+                    Ui.cls();
+                    Potion.buy("charm");
+                    NPC.gratitude("Health", "purchase");
+                    break;
+                case 7:
+                    Ui.cls();
+                    Potion.buy("strength");
+                    NPC.gratitude("Health", "purchase");
+                    break;
+                case 8:
+                    Ui.cls();
+                    Potion.buy("allstats");
+                    NPC.gratitude("Health", "purchase");
+                    break;
+                case 9:
                     return;
                 default:
                     break;
