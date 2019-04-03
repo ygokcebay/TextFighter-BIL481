@@ -36,7 +36,7 @@ public class Weapon {
 
     public int enhancement;
 
-
+    
 
     public Weapon(String name, int ammoUsed, int ammoIncludedWithPurchase, boolean buyable, int price, //For guns
                   int ammoPrice, int level, double chanceOfMissing, boolean firstInit, boolean changeDif) {
@@ -61,7 +61,22 @@ public class Weapon {
         }
 
     }
-
+    
+    public int getminDamage(){
+    	return damageMin;
+    }
+    public void setminDamage(int minDam){
+    	this.damageMin = minDam;
+    }
+    
+    public int getmaxDamage(){
+    	return damageMax;
+    }
+    public void setmaxDamage(int maxDam){
+    	this.damageMax = maxDam;
+    }
+    
+    
     public Weapon(String name, boolean startingWeapon, boolean buyable, int price, int level,//For Melee
                   int damageMin, int damageMax, boolean firstInit, boolean changeDif) {
         this.name = name;

@@ -10,6 +10,11 @@ public class Casino {
     private static final String DICE_HEADER = "------------------------------------------------------------------\n" +
             "                            Dice Game                             \n" +
             "------------------------------------------------------------------";
+    private static final String GAMBLE_CALCULATOR = "------------------------------------------------------------------\n" +
+            "                            Gamble Calculator                             \n" +
+            "------------------------------------------------------------------";   
+    
+    
     public static int totalCoinsWon = 0;
     public static int gamesPlayed = 0;
 
@@ -27,7 +32,10 @@ public class Casino {
             Ui.println("------------------------------------------------------------------");
             Ui.println("1) Dice Game");
             Ui.println("2) Slots");
-            Ui.println("3) Back");
+            
+            Ui.println("3) Gamble Calculator");
+
+            Ui.println("4) Back");
             Ui.println("------------------------------------------------------------------");
 
             int menuChoice = Ui.getValidInt();
@@ -40,6 +48,9 @@ public class Casino {
                     slots();
                     break;
                 case 3:
+                    calculate();
+                    break;  
+                case 4:
                     return;
                 default:
                     break;
@@ -118,6 +129,46 @@ public class Casino {
         }//While
     }
 
+    
+    private static void calculate() {
+    	 int bet;
+         Ui.cls();
+         Ui.println(GAMBLE_CALCULATOR);
+         Ui.println();
+         Ui.println("Coins: " + Coins.get());
+         Ui.println();
+         Ui.println("To begin, enter the amount of coins you are considiring to to bet.. ");
+         Ui.println("It must be between 10, and 250.");
+         Ui.println("Enter 0 to go back");
+         
+         
+         do {//Bet
+             bet = Ui.getValidInt();
+             if (bet == 0) return;
+             if (bet > Coins.get()) {
+                 Ui.cls();
+                 bet = 0;
+                 Ui.println("You do not have enough coins. Please enter a smaller amount. (Or enter 0 to go back)");
+                
+             }
+         } while (bet < 10 || bet > 250);
+         Ui.println("If you win the dice game with 2 correct dices");
+         Ui.println("You would win: "+bet*5);
+         Ui.println("If you win the dice game with 1 correct die");
+         Ui.println("You would win: "+bet*2);
+         Ui.println("If you win the slot game with 1 correct die");
+         Ui.println("You would win: "+bet*2);     
+         Ui.println("If you win the slot game with 3 corrects");
+         Ui.println("You would win: "+bet*4);      
+         Ui.println("If you win the slot game with 4 corrects");
+         Ui.println("You would win: "+bet*8);      
+         Ui.println("Otherwise you will lose all your "+bet+" coins");
+         Ui.pause();
+
+    
+         
+         
+    }
     private static void dicePlay() {
         int bet;
         int firstNumber;

@@ -1,147 +1,180 @@
 package com.hotmail.kalebmarc.textfighter.main;
 
 import com.hotmail.kalebmarc.textfighter.player.Coins;
+import com.hotmail.kalebmarc.textfighter.player.Health;
 import com.hotmail.kalebmarc.textfighter.player.Stats;
 import com.hotmail.kalebmarc.textfighter.player.Xp;
 
 public class Bank {
 
-    private static double interest;
-    private static int balance;
+	private static double interest;
+	private static int balance;
+	private static final int insuranceRate = 200;
 
-    public static void menu() {
 
-        int amount;
+	public static void menu() {
 
-        //Makes sure user level 2
-        if (Xp.getLevel() < 2) {
-            Ui.msg("You have to be at least level 2 to use the bank.");
-            return;
-        }
+		int amount;
 
-        while (true) {
+		//Makes sure user level 2
+		if (Xp.getLevel() < 2) {
+			Ui.msg("You have to be at least level 2 to use the bank.");
+			return;
+		}
 
-            Ui.cls();
-            Ui.println("---------------------------------------");
-            Ui.println("                BANK              ");
-            Ui.println();
-            Ui.println("You can deposit your coins into");
-            Ui.println("the bank, so they will be safe if");
-            Ui.println("you die. However, you will need to");
-            Ui.println("pay " + (interest * 100) + "% of what you're depositing");
-            Ui.println("every time (Rounded to the nearest ");
-            Ui.println("whole number).");
-            Ui.println();
-            Ui.println("Balance (Coins in the bank): " + get());
-            Ui.println("Coins: " + Coins.get());
-            Ui.println();
-            Ui.println("1) Deposit");
-            Ui.println("2) Withdraw");
-            Ui.println("3) Loans");
-            Ui.println("4) Back");
-            Ui.println("---------------------------------------");
+		while (true) {
 
-            switch (Ui.getValidInt()) {
-                case 1:
-                    //-----------------------------------------------------------------------------------
-                    if (Loan.hasLoan()) {
-                        Ui.msg("You can not deposit coins until you pay off your loan!");
-                        break;
-                    }
-                    Ui.println("How much money would you like to deposit? (You will have to pay " + (interest * 100) + "% of this)");
-                    Ui.println("You currently have " + Coins.get() + " coins.");
-                    do {
-                        amount = Ui.getValidInt();
-                        if (amount > Coins.get()) {
-                            Ui.println("You don't have enough coins. You only have " + Coins.get() + " coins.");
-                            amount = -1;
-                        }
-                    } while (amount < 0);
-                    if (amount == 0) return;
+			Ui.cls();
+			Ui.println("---------------------------------------");
+			Ui.println("                BANK              ");
+			Ui.println();
+			Ui.println("You can deposit your coins into");
+			Ui.println("the bank, so they will be safe if");
+			Ui.println("you die. However, you will need to");
+			Ui.println("pay " + (interest * 100) + "% of what you're depositing");
+			Ui.println("every time (Rounded to the nearest ");
+			Ui.println("whole number).");
+			Ui.println();
+			Ui.println("Balance (Coins in the bank): " + get());
+			Ui.println("Coins: " + Coins.get());
+			Ui.println();
+			Ui.println("1) Deposit");
+			Ui.println("2) Withdraw");
+			Ui.println("3) Loans");
+			Ui.println("4) Life Insurance");
+			Ui.println("5) Back");
+			Ui.println("---------------------------------------");
 
-                    //Deposit
-                    deposit(amount, interest);
-                    //-----------------------------------------------------------------------------------
-                    break;
-                case 2:
-                    //-----------------------------------------------------------------------------------
-                    Ui.cls();
+			switch (Ui.getValidInt()) {
+			case 1:
+				//-----------------------------------------------------------------------------------
+				if (Loan.hasLoan()) {
+					Ui.msg("You can not deposit coins until you pay off your loan!");
+					break;
+				}
+				Ui.println("How much money would you like to deposit? (You will have to pay " + (interest * 100) + "% of this)");
+				Ui.println("You currently have " + Coins.get() + " coins.");
+				do {
+					amount = Ui.getValidInt();
+					if (amount > Coins.get()) {
+						Ui.println("You don't have enough coins. You only have " + Coins.get() + " coins.");
+						amount = -1;
+					}
+				} while (amount < 0);
+				if (amount == 0) return;
 
-                    //Input
-                    Ui.println("How much money would you like to withdraw?");
-                    Ui.println("You currently have " + get() + " coins in your bank.");
-                    do {
-                        amount = Ui.getValidInt();
-                        if (amount > get()) {
-                            Ui.println("You don't have enough coins in your bank. You only have " + get() + " coins.");
-                            amount = -1;
-                        }
-                    } while (amount < 0);
+				//Deposit
+				deposit(amount, interest);
+				//-----------------------------------------------------------------------------------
+				break;
+			case 2:
+				//-----------------------------------------------------------------------------------
+				Ui.cls();
 
-                    //Withdraw
-                    withdraw(amount);
-                    //-----------------------------------------------------------------------------------
-                    break;
-                case 3:
-                    Loan.menu();
-                    break;
-                case 4:
-                    return;
-            }
-        }
-    }
+				//Input
+				Ui.println("How much money would you like to withdraw?");
+				Ui.println("You currently have " + get() + " coins in your bank.");
+				do {
+					amount = Ui.getValidInt();
+					if (amount > get()) {
+						Ui.println("You don't have enough coins in your bank. You only have " + get() + " coins.");
+						amount = -1;
+					}
+				} while (amount < 0);
 
-    public static int get() {
-        return balance;
-    }
+				//Withdraw
+				withdraw(amount);
+				//-----------------------------------------------------------------------------------
+				break;
+			case 3:
+				Loan.menu();
+				break;
+			case 4:
+				if(Health.getInsurance()){
+					Ui.println("You are already insured");
+					return;
+				}
+				Ui.println("If you pay "+insuranceRate+" you will get life insurance which means you will not lose any coins if you die.");
+				Ui.println("You have to buy life insurance everytime you die.");
+				Ui.println("1) Buy Life Insurance!                                                    ");
+				Ui.println("2) Back to the menu                                            ");
+				Ui.println("------------------------------------------------------------------");
 
-    public static void set(int amount, boolean add) {
-        if (!add) {
-            balance = amount;
-        } else {
-            balance += amount;
-            if (balance < 0) balance = 0;
-        }
-    }
+				int menuChoice = Ui.getValidInt();
 
-    public static void setInterest(double price) {
-        interest = price;
-    }
+				switch (menuChoice) {
+				case 1:
+					if(insuranceRate>Coins.get()){
+						Ui.println("You don't have enough coins to buy life insurance");
+						return;
+					}
+					Coins.set(-(insuranceRate), true);
+					Health.setInsurance(true);
+					Ui.println("Now you have life insurance");
+					break;
+				case 2:
+					return;
+				default:
+					break;
+				}//Switch
+				break;
+			case 5:
+				return;
+			}
+		}
+	}
 
-    private static void withdraw(int amount) {
-        //Calculation
-        Coins.set(amount, true);
-        set(-amount, true);
+	public static int get() {
+		return balance;
+	}
 
-        //Result
-        Ui.cls();
-        Ui.println("Amount withdrawn: " + amount);
-        Ui.println("Current Balance: " + get());
-        Ui.pause();
-    }
+	public static void set(int amount, boolean add) {
+		if (!add) {
+			balance = amount;
+		} else {
+			balance += amount;
+			if (balance < 0) balance = 0;
+		}
+	}
 
-    private static void deposit(int amount, double interest) {
+	public static void setInterest(double price) {
+		interest = price;
+	}
 
-        //Get interest
-        interest = interest * amount;
-        if (amount < 10) interest = 1;
+	private static void withdraw(int amount) {
+		//Calculation
+		Coins.set(amount, true);
+		set(-amount, true);
 
-        //Take coins from player
-        Coins.set(-amount, true);
+		//Result
+		Ui.cls();
+		Ui.println("Amount withdrawn: " + amount);
+		Ui.println("Current Balance: " + get());
+		Ui.pause();
+	}
 
-        //Take away interest amount
-        amount -= Math.round(interest);
-        Stats.totalCoinsSpent += Math.round(interest);
-        Stats.coinsSpentOnBankInterest += Math.round(interest);
+	private static void deposit(int amount, double interest) {
 
-        //Add remaining coins to bank account
-        set(amount, true);
+		//Get interest
+		interest = interest * amount;
+		if (amount < 10) interest = 1;
 
-        //Display
-        Ui.cls();
-        Ui.println("Amount Deposited: " + amount + " coins");
-        Ui.println("Interest Paid: " + Math.round(interest) + " coins");
-        Ui.println("Current Balance: " + get() + " coins");
-        Ui.pause();
-    }
+		//Take coins from player
+		Coins.set(-amount, true);
+
+		//Take away interest amount
+		amount -= Math.round(interest);
+		Stats.totalCoinsSpent += Math.round(interest);
+		Stats.coinsSpentOnBankInterest += Math.round(interest);
+
+		//Add remaining coins to bank account
+		set(amount, true);
+
+		//Display
+		Ui.cls();
+		Ui.println("Amount Deposited: " + amount + " coins");
+		Ui.println("Interest Paid: " + Math.round(interest) + " coins");
+		Ui.println("Current Balance: " + get() + " coins");
+		Ui.pause();
+	}
 }
