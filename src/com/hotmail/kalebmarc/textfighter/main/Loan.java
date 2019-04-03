@@ -6,9 +6,9 @@ import com.hotmail.kalebmarc.textfighter.player.Xp;
 public class Loan {
 
 	private static final double INTEREST_RATE_smallAmount = 0.30;
-	private static final double INTEREST_RATE_avarageAmount = 0.15;
+	private static final double INTEREST_RATE_avarageAmount = 0.20;
 	private static final double INTEREST_RATE_largeAmount = 0.10;
-	private static double INTEREST_RATE = 0.10;
+	private static double INTEREST_RATE = 0.20;
 
 
 
