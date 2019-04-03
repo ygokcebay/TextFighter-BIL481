@@ -21,8 +21,8 @@ public class Health {
 	}
 
 
-	public static  void setInsurance(boolean atama){
-		lifeInsurance = atama;
+	public static  void setInsurance(boolean Insured){
+		lifeInsurance = Insured;
 	}
 	public static boolean getInsurance(){
 		return lifeInsurance;
