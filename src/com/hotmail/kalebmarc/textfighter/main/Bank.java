@@ -9,7 +9,7 @@ public class Bank {
 
 	private static double interest;
 	private static int balance;
-	private static final int insuranceRate = 200;
+	private static final int insuranceRate = 300;
 
 
 	public static void menu() {
